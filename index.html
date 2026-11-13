@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,355 +7,558 @@
 <meta name="description" content="Mechanical & Simulation Engineer — FEA, CFD and multiscale material modeling.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f7f9; --surface:#ffffff; --surface-2:#eef1f5;
-  --text:#0f1720; --muted:#5a6675; --line:#dde2e9;
-  --accent:#0a7cff; --accent-2:#00b39b; --accent-soft:rgba(10,124,255,.10);
-  --grid:rgba(15,23,32,.05);
-  --shadow:0 1px 2px rgba(15,23,32,.04),0 8px 24px rgba(15,23,32,.06);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0b0f14; --surface:#121820; --surface-2:#18202b;
-    --text:#e8edf3; --muted:#93a1b2; --line:#232d3a;
-    --accent:#4da3ff; --accent-2:#2fd6bd; --accent-soft:rgba(77,163,255,.12);
-    --grid:rgba(232,237,243,.045);
-    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0b0f14; --surface:#121820; --surface-2:#18202b;
-  --text:#e8edf3; --muted:#93a1b2; --line:#232d3a;
-  --accent:#4da3ff; --accent-2:#2fd6bd; --accent-soft:rgba(77,163,255,.12);
-  --grid:rgba(232,237,243,.045);
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px rgba(0,0,0,.35);
+  --bg:#0a0e14; --panel:#0f151e; --panel-2:#141c27; --panel-head:#18222f;
+  --text:#e6edf5; --muted:#8a99ab; --dim:#5c6b7d; --line:#223042; --line-2:#2c3d52;
+  --cyan:#22d3ee; --green:#4ade80; --yellow:#facc15; --red:#f43f5e; --blue:#3b82f6;
+  --accent:#22d3ee;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg); color:var(--text);
   font-family:Inter,system-ui,sans-serif; line-height:1.6; font-size:16px;
-  background-image:
-    linear-gradient(var(--grid) 1px,transparent 1px),
-    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:40px 40px;
   -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 500px at 85% -10%,rgba(34,211,238,.08),transparent 60%),
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:auto,24px 24px,24px 24px;
 }
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
 h1,h2,h3{font-family:"Space Grotesk",sans-serif;letter-spacing:-.02em;line-height:1.15}
 .mono{font-family:"JetBrains Mono",monospace}
 
-/* nav */
-nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);
-  background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
-.logo{font-family:"Space Grotesk";font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px}
-.logo span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;
-  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-size:13px}
-.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}
-.links a:hover{color:var(--text)}
-.theme-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);
-  width:36px;height:36px;border-radius:10px;cursor:pointer;display:grid;place-items:center}
-@media (max-width:720px){.links{display:none}}
+/* ---------- app bar ---------- */
+.appbar{position:sticky;top:0;z-index:20;background:rgba(10,14,20,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.appbar .wrap{display:flex;align-items:center;height:56px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono";font-weight:600;font-size:14px;white-space:nowrap}
+.logo .cube{width:28px;height:28px}
+.logo small{color:var(--dim);font-weight:400}
+.tabs{display:flex;gap:2px;margin-left:auto;font-family:"JetBrains Mono";font-size:12.5px}
+.tabs a{padding:7px 12px;border-radius:6px;color:var(--muted);border:1px solid transparent}
+.tabs a:hover{color:var(--text);background:var(--panel-2);border-color:var(--line)}
+.tabs a.on{color:var(--cyan);background:rgba(34,211,238,.08);border-color:rgba(34,211,238,.25)}
+@media (max-width:820px){.tabs{display:none}.logo small{display:none}}
 
-/* hero */
-.hero{padding:88px 0 72px;position:relative}
-.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);
-  border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-2) 25%,transparent)}
-.hero h1{font-size:clamp(40px,7vw,76px);font-weight:700;margin:22px 0 14px}
-.hero h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.role{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:680px}
+/* ---------- panels ---------- */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.phead{display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--panel-head);border-bottom:1px solid var(--line);
+  font-family:"JetBrains Mono";font-size:12px;color:var(--muted)}
+.phead .lights{display:flex;gap:6px;margin-right:4px}
+.phead .lights i{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.phead .lights i:nth-child(1){background:#f43f5e99}.phead .lights i:nth-child(2){background:#facc1599}.phead .lights i:nth-child(3){background:#4ade8099}
+.phead .right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.pbody{padding:24px}
+.ok{color:var(--green)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono";font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted)}
+.pill .d{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* ---------- hero ---------- */
+.hero{padding:48px 0 24px;display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:center}
+.crumb{font-family:"JetBrains Mono";font-size:12.5px;color:var(--dim);margin-bottom:18px}
+.crumb b{color:var(--cyan);font-weight:500}
+.hero h1{font-size:clamp(40px,6vw,66px);font-weight:700}
+.hero h1 .g{background:linear-gradient(90deg,#3b82f6,#22d3ee 35%,#4ade80 60%,#facc15 80%,#f97316);-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{margin:16px 0 0;font-size:18px;color:var(--muted);max-width:520px}
 .role b{color:var(--text);font-weight:600}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:600;font-size:15px;transition:transform .15s}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:8px;font-weight:600;font-size:14.5px;transition:transform .15s,border-color .15s}
 .btn:hover{transform:translateY(-2px)}
-.btn.primary{background:var(--text);color:var(--bg)}
-.btn.ghost{border:1px solid var(--line);background:var(--surface)}
-.meta{display:flex;flex-wrap:wrap;gap:20px;margin-top:40px;font-size:14px;color:var(--muted)}
-.meta div{display:flex;align-items:center;gap:8px}
+.btn.primary{background:var(--cyan);color:#05212a}
+.btn.ghost{border:1px solid var(--line-2);background:var(--panel)}
+.btn.ghost:hover{border-color:var(--cyan)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin-top:28px;font-family:"JetBrains Mono";font-size:13px}
+.kv dt{color:var(--dim)}
+.kv dd{color:var(--text);word-break:break-word}
+.kv dd a:hover{color:var(--cyan)}
 
-/* sim visual */
-.viz{position:absolute;right:0;top:70px;width:300px;height:300px;opacity:.9;pointer-events:none}
-@media (max-width:920px){.viz{display:none}}
+/* viewport */
+.viewport .stage{position:relative;aspect-ratio:1.18/1;background:
+  radial-gradient(120% 90% at 50% 0%,#1b2f4a 0%,#0d1726 55%,#090f19 100%)}
+#fea{position:absolute;inset:0;width:100%;height:100%;display:block}
+.legend{position:absolute;left:12px;top:12px;font-family:"JetBrains Mono";font-size:10.5px;color:#cfd9e4;line-height:1.35;pointer-events:none}
+.legend .t{color:#fff;font-weight:600;margin-bottom:2px}
+.legend .s{color:var(--muted);margin-bottom:8px}
+.legend .bar{display:grid;grid-template-columns:14px auto;gap:0 8px}
+.legend .bar i{display:block;height:14px;border:1px solid rgba(0,0,0,.35)}
+.legend .bar span{height:14px;line-height:14px}
+.legend .mx{color:#ff6a5c}.legend .mn{color:#5aa7ff}
+.vinfo{position:absolute;right:12px;bottom:10px;text-align:right;font-family:"JetBrains Mono";font-size:10.5px;color:var(--muted);pointer-events:none}
+.vinfo b{color:var(--text);font-weight:500}
+.triad{position:absolute;left:12px;bottom:10px;width:56px;height:56px;pointer-events:none}
+.probe{position:absolute;pointer-events:none;font-family:"JetBrains Mono";font-size:10.5px;background:rgba(9,15,25,.92);
+  border:1px solid var(--line-2);color:var(--text);padding:3px 7px;border-radius:4px;transform:translate(10px,-50%);white-space:nowrap;display:none}
+.vfoot{display:flex;gap:18px;flex-wrap:wrap;padding:8px 14px;border-top:1px solid var(--line);font-family:"JetBrains Mono";font-size:11.5px;color:var(--dim);background:var(--panel-head)}
+.vfoot b{color:var(--muted);font-weight:500}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
 
-/* sections */
-section{padding:64px 0}
-.eyebrow{font-family:"JetBrains Mono";font-size:13px;color:var(--accent);margin-bottom:10px}
-section h2{font-size:clamp(28px,4vw,38px);margin-bottom:28px}
+/* ---------- sections ---------- */
+section{padding:44px 0}
+.sh{display:flex;align-items:baseline;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.sh .no{font-family:"JetBrains Mono";font-size:12.5px;color:var(--cyan)}
+.sh h2{font-size:clamp(26px,3.6vw,34px)}
+.sh .sub{font-family:"JetBrains Mono";font-size:12.5px;color:var(--dim)}
 
-.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+/* summary */
+.summary{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.summary p{color:var(--muted);font-size:16.5px}
+.summary p + p{margin-top:14px}
+.summary strong{color:var(--text);font-weight:600}
+.props{width:100%;border-collapse:collapse;font-family:"JetBrains Mono";font-size:12.5px}
+.props td{padding:8px 14px;border-bottom:1px solid var(--line)}
+.props tr:last-child td{border-bottom:0}
+.props td:first-child{color:var(--dim);width:44%}
+.props tr:nth-child(odd) td{background:rgba(255,255,255,.015)}
+.resid{padding:14px 14px 6px}
+.resid .lbl{display:flex;justify-content:space-between;font-family:"JetBrains Mono";font-size:11px;color:var(--dim);margin-bottom:6px}
+.resid svg{width:100%;height:110px;display:block}
+.keys{display:flex;gap:12px;flex-wrap:wrap;font-family:"JetBrains Mono";font-size:10.5px;color:var(--muted);padding:6px 0 4px}
+.keys i{display:inline-block;width:12px;height:2px;vertical-align:middle;margin-right:5px}
+@media (max-width:860px){.summary{grid-template-columns:1fr}}
 
-.about{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
-.about p{color:var(--muted);font-size:17px}
-.about p + p{margin-top:14px}
-.about strong{color:var(--text);font-weight:600}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat{background:var(--surface-2);border-radius:14px;padding:18px}
-.stat .n{font-family:"Space Grotesk";font-size:30px;font-weight:700}
-.stat .l{font-size:13px;color:var(--muted)}
-@media (max-width:820px){.about{grid-template-columns:1fr}}
-
-/* timeline */
-.timeline{position:relative;display:grid;gap:20px}
-.job{display:grid;grid-template-columns:200px 1fr;gap:24px}
-.job .when{font-family:"JetBrains Mono";font-size:13px;color:var(--muted);padding-top:30px}
+/* experience */
+.steps{display:grid;gap:16px}
+.step .phead .n{color:var(--cyan)}
+.job{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:start}
 .job h3{font-size:21px}
-.org{color:var(--accent);font-weight:500;margin:4px 0 2px}
-.place{font-size:14px;color:var(--muted);margin-bottom:16px}
-.job ul{list-style:none;display:grid;gap:10px}
-.job li{position:relative;padding-left:22px;color:var(--muted)}
-.job li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--accent-2)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.tag{font-family:"JetBrains Mono";font-size:12px;padding:5px 10px;border-radius:8px;background:var(--accent-soft);color:var(--accent)}
-@media (max-width:720px){.job{grid-template-columns:1fr;gap:6px}.job .when{padding-top:0}}
+.org{color:var(--cyan);font-weight:500;margin-top:4px}
+.place{font-size:14px;color:var(--muted);margin-top:2px}
+.when{font-family:"JetBrains Mono";font-size:12.5px;color:var(--muted);text-align:right;white-space:nowrap}
+.job ul{grid-column:1/-1;list-style:none;display:grid;gap:9px;margin-top:16px}
+.job li{position:relative;padding-left:24px;color:var(--muted)}
+.job li::before{content:"›";position:absolute;left:4px;top:-1px;color:var(--cyan);font-family:"JetBrains Mono";font-weight:600}
+.tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-family:"JetBrains Mono";font-size:11.5px;padding:4px 10px;border-radius:5px;background:rgba(34,211,238,.08);color:var(--cyan);border:1px solid rgba(34,211,238,.18)}
+@media (max-width:640px){.job{grid-template-columns:1fr}.when{text-align:left;grid-row:1}}
 
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.skills h3{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.skills .pbody{padding:18px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2)}
-@media (max-width:820px){.skills{grid-template-columns:1fr}}
+.chip{font-size:13.5px;padding:6px 11px;border-radius:6px;border:1px solid var(--line-2);background:var(--panel-2);display:inline-flex;align-items:center;gap:7px}
+.chip::before{content:"";width:6px;height:6px;border-radius:1px;background:var(--c,var(--cyan))}
+@media (max-width:860px){.skills{grid-template-columns:1fr}}
 
 /* education */
 .edu{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.edu .card h3{font-size:18px;margin-bottom:6px}
-.edu .deg{color:var(--text);font-weight:500}
-.edu .yr{font-family:"JetBrains Mono";font-size:13px;color:var(--muted);margin-top:10px}
-.badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--accent-2);margin-bottom:10px}
-@media (max-width:720px){.edu{grid-template-columns:1fr}}
+.edu .pbody{padding:20px}
+.edu h3{font-size:18px;margin-bottom:4px}
+.edu .deg{color:var(--muted)}
+.edu .yr{font-family:"JetBrains Mono";font-size:12.5px;color:var(--dim);margin-top:10px}
+@media (max-width:700px){.edu{grid-template-columns:1fr}}
 
 /* contact */
-.contact{text-align:center;padding:56px 24px;background:
-  radial-gradient(600px 220px at 50% 0%,var(--accent-soft),transparent),var(--surface)}
-.contact h2{margin-bottom:12px}
-.contact p{color:var(--muted);max-width:520px;margin:0 auto 28px}
-.contact .cta{justify-content:center;margin-top:0}
-footer{padding:32px 0 48px;text-align:center;font-size:13px;color:var(--muted)}
+.contact .pbody{padding:36px 28px;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+.contact h2{font-size:clamp(26px,3.6vw,34px);margin-bottom:10px}
+.contact p{color:var(--muted)}
+.lines{display:grid;gap:10px}
+.line{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line-2);border-radius:8px;background:var(--panel-2);transition:border-color .15s}
+.line:hover{border-color:var(--cyan)}
+.line .ic{width:34px;height:34px;border-radius:7px;display:grid;place-items:center;background:rgba(34,211,238,.1);color:var(--cyan);flex:none}
+.line .k{font-family:"JetBrains Mono";font-size:11px;color:var(--dim)}
+.line .v{font-size:15px;word-break:break-all}
+.copy{margin-left:auto;font-family:"JetBrains Mono";font-size:11px;color:var(--muted);background:none;border:1px solid var(--line-2);border-radius:5px;padding:4px 8px;cursor:pointer;flex:none}
+.copy:hover{color:var(--cyan);border-color:var(--cyan)}
+@media (max-width:820px){.contact .pbody{grid-template-columns:1fr}}
 
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+/* status bar */
+.status{margin-top:28px;border-top:1px solid var(--line);background:var(--panel)}
+.status .wrap{display:flex;gap:22px;flex-wrap:wrap;padding:12px 16px;font-family:"JetBrains Mono";font-size:11.5px;color:var(--dim)}
+.status b{color:var(--muted);font-weight:500}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
-<nav>
+<header class="appbar">
   <div class="wrap">
-    <a href="#top" class="logo"><span>SK</span>Sai Kommineni</a>
-    <div class="links">
-      <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
-    </div>
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-  </div>
-</nav>
-
-<header class="hero wrap" id="top">
-  <svg class="viz" viewBox="0 0 300 300" aria-hidden="true">
-    <defs>
-      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent-2)"/>
-      </linearGradient>
-    </defs>
-    <g id="mesh" stroke="url(#g)" stroke-width="1" fill="none"></g>
-  </svg>
-
-  <div class="status"><span class="dot"></span>Open to full-time roles · Germany &amp; Europe</div>
-  <h1>Sai Viswanath<br><span class="grad">Kommineni</span></h1>
-  <p class="role"><b>Mechanical &amp; Simulation Engineer</b> — FEA, CFD and multiscale material modeling. I use simulation to catch design and process problems before they become expensive physical ones.</p>
-  <div class="cta">
-    <a class="btn primary" href="mailto:viswanathkomeneni@gmail.com">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Get in touch</a>
-    <a class="btn ghost" href="www.linkedin.com/in/sai-viswanath-kommineni-3b1a25156" target="_blank" rel="noopener">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.5-2.25 3.1V21H9z"/></svg>LinkedIn</a>
-  </div>
-  <div class="meta">
-    <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Bremen, Germany</div>
-    <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>M.Eng. Process Engineering &amp; Energy Technology</div>
-    <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 5 5L20 7"/></svg>Open to relocation</div>
+    <a href="#top" class="logo">
+      <svg class="cube" viewBox="0 0 32 32" fill="none" stroke-width="1.6">
+        <path d="M16 3 28 9.5v13L16 29 4 22.5v-13z" stroke="#22d3ee"/>
+        <path d="M4 9.5 16 16l12-6.5M16 16v13" stroke="#22d3ee" opacity=".55"/>
+        <circle cx="16" cy="16" r="2.2" fill="#facc15" stroke="none"/>
+      </svg>
+      SVK<span style="color:var(--dim)">·</span>CAE <small>/ portfolio.wbpj</small>
+    </a>
+    <nav class="tabs">
+      <a href="#summary">Summary</a><a href="#experience">Solution</a><a href="#skills">Toolbox</a><a href="#education">Education</a><a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
-<main>
-<section id="about" class="wrap reveal">
-  <div class="eyebrow">// 01 — about</div>
-  <h2>Simulation-driven product development</h2>
-  <div class="about">
-    <div class="card">
-      <p>Mechanical Engineer specializing in <strong>FEA, CFD and multiscale material modeling</strong>. At Fraunhofer IMWS I used ANSYS Workbench and Digimat to evaluate material behavior, building multiscale models for pure, recycled and combined material fractions, and simulated additive manufacturing processes to predict thermal effects and residual stress before parts were printed.</p>
-      <p>Previously at <strong>Fraunhofer FFB</strong>, I modeled electrolyte filling in lithium-ion battery manufacturing using ANSYS Fluent — work that became my Master's thesis.</p>
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <div class="crumb">Project ▸ Engineers ▸ <b>Sai_Kommineni</b></div>
+      <span class="pill"><span class="d"></span>Status: open to full-time roles · DE / EU</span>
+      <h1 style="margin-top:18px">Sai Viswanath<br><span class="g">Kommineni</span></h1>
+      <p class="role"><b>Mechanical &amp; Simulation Engineer</b> — FEA, CFD and multiscale material modeling. I use simulation to find design and process problems before they turn into expensive physical ones.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 3v18l15-9z"/></svg>Run contact</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/sai-viswanath-kommineni-3b1a25156" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.5-2.25 3.1V21H9z"/></svg>LinkedIn</a>
+      </div>
+      <dl class="kv">
+        <dt>location</dt><dd>Bremen, Germany · open to relocation</dd>
+        <dt>email</dt><dd><a href="mailto:komminenisaiviswanath@gmail.com">komminenisaiviswanath@gmail.com</a></dd>
+        <dt>mobile</dt><dd><a href="tel:+4915141636930">+49 151 41636930</a></dd>
+      </dl>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="n">2</div><div class="l">Fraunhofer institutes</div></div>
-      <div class="stat"><div class="n">FEA·CFD</div><div class="l">Structural &amp; multiphase flow</div></div>
-      <div class="stat"><div class="n">AM</div><div class="l">Additive manufacturing simulation</div></div>
-      <div class="stat"><div class="n">Li-ion</div><div class="l">Battery production modeling</div></div>
+
+    <div class="panel viewport">
+      <div class="phead">
+        <span class="lights"><i></i><i></i><i></i></span>
+        A: Static Structural — Equivalent Stress
+        <span class="right"><span class="ok">✓</span> Solved</span>
+      </div>
+      <div class="stage" id="stage">
+        <canvas id="fea" aria-label="Animated finite-element stress contour of a plate with a hole"></canvas>
+        <div class="legend">
+          <div class="t">Equivalent Stress</div>
+          <div class="s">Type: von Mises · Unit: MPa</div>
+          <div class="bar" id="legend"></div>
+        </div>
+        <svg class="triad" viewBox="0 0 56 56">
+          <line x1="14" y1="42" x2="44" y2="42" stroke="#f43f5e" stroke-width="2"/><text x="47" y="45" fill="#f43f5e" font-size="9" font-family="JetBrains Mono">X</text>
+          <line x1="14" y1="42" x2="14" y2="12" stroke="#4ade80" stroke-width="2"/><text x="11" y="9" fill="#4ade80" font-size="9" font-family="JetBrains Mono">Y</text>
+          <line x1="14" y1="42" x2="2" y2="52" stroke="#3b82f6" stroke-width="2"/><circle cx="14" cy="42" r="2.5" fill="#cfd9e4"/>
+        </svg>
+        <div class="vinfo">Load σ∞ = <b id="load">—</b> MPa<br>Time: <b id="time">0.000</b> s</div>
+        <div class="probe" id="probe"></div>
+      </div>
+      <div class="vfoot"><span>Nodes: <b id="nodes">—</b></span><span>Elements: <b id="elems">—</b></span><span>Kt ≈ <b>3.0</b></span><span>hover to probe</span></div>
     </div>
   </div>
-</section>
 
-<section id="experience" class="wrap reveal">
-  <div class="eyebrow">// 02 — experience</div>
-  <h2>Where I've worked</h2>
-  <div class="timeline">
-    <div class="job">
-      <div class="when">Jun 2025 — May 2026</div>
-      <div class="card">
-        <h3>Research Assistant</h3>
-        <div class="org">Fraunhofer Institute for Microstructure of Materials and Systems IMWS</div>
-        <div class="place">Halle, Saxony-Anhalt, Germany</div>
-        <ul>
-          <li>Performed FEA in ANSYS Workbench to evaluate the mechanical behavior of advanced materials.</li>
-          <li>Characterized mechanical properties of pure, recycled and combined material formulations.</li>
-          <li>Built multiscale material models in Digimat incorporating recycled material fractions.</li>
-          <li>Simulated additive manufacturing processes to predict thermal effects, residual stress and distortion.</li>
-        </ul>
-        <div class="tags"><span class="tag">ANSYS Workbench</span><span class="tag">Digimat</span><span class="tag">Thermoplastics</span><span class="tag">Additive Manufacturing</span></div>
+  <!-- SUMMARY -->
+  <section id="summary" class="reveal">
+    <div class="sh"><span class="no">01</span><h2>Model summary</h2><span class="sub">// about</span></div>
+    <div class="summary">
+      <div class="panel"><div class="phead">Details of "Engineer"</div>
+        <div class="pbody">
+          <p>Mechanical Engineer specializing in <strong>FEA, CFD and multiscale material modeling</strong>. At Fraunhofer IMWS I used ANSYS Workbench and Digimat to evaluate material behavior, building multiscale models for pure, recycled and combined material fractions, and simulated additive manufacturing processes to predict thermal effects and residual stress before parts were printed.</p>
+          <p>Previously at <strong>Fraunhofer FFB</strong>, I modeled electrolyte filling in lithium-ion battery manufacturing in ANSYS Fluent using VOF multiphase methods. That work became my Master's thesis.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="phead">Properties<span class="right"><span class="ok">●</span> valid</span></div>
+        <table class="props">
+          <tr><td>Discipline</td><td>Mechanical / CAE</td></tr>
+          <tr><td>Analysis types</td><td>Structural · Thermal · CFD</td></tr>
+          <tr><td>Research institutes</td><td>Fraunhofer IMWS, FFB</td></tr>
+          <tr><td>Focus</td><td>AM · Li-ion cells · Recycled polymers</td></tr>
+          <tr><td>Languages</td><td>Python · MATLAB</td></tr>
+        </table>
+        <div class="resid">
+          <div class="lbl"><span>Scaled residuals</span><span class="ok">converged</span></div>
+          <svg id="resid" viewBox="0 0 300 110" preserveAspectRatio="none"></svg>
+          <div class="keys"><span><i style="background:#f43f5e"></i>continuity</span><span><i style="background:#4ade80"></i>x-velocity</span><span><i style="background:#3b82f6"></i>y-velocity</span><span><i style="background:#facc15"></i>energy</span></div>
+        </div>
       </div>
     </div>
-    <div class="job">
-      <div class="when">Oct 2023 — Sep 2024</div>
-      <div class="card">
-        <h3>Master Thesis Student</h3>
-        <div class="org">Fraunhofer Research Institution for Battery Cell Production FFB</div>
-        <div class="place">Münster, North Rhine-Westphalia, Germany</div>
-        <ul>
-          <li>Modeled electrolyte filling in lithium-ion battery manufacturing using ANSYS Fluent.</li>
-          <li>Applied VOF multiphase methods to simulate fluid behavior during the filling process.</li>
-          <li>Developed and validated physics-based numerical models to improve process efficiency.</li>
-          <li>Supported scalable battery production strategy through simulation-driven insights.</li>
-        </ul>
-        <div class="tags"><span class="tag">ANSYS Fluent</span><span class="tag">CFD</span><span class="tag">VOF Multiphase</span><span class="tag">Battery Cells</span></div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="sh"><span class="no">02</span><h2>Solution history</h2><span class="sub">// experience</span></div>
+    <div class="steps">
+      <div class="panel step">
+        <div class="phead"><span class="n">Step 2</span> · Research Assistant<span class="right"><span class="ok">✓</span> completed</span></div>
+        <div class="pbody job">
+          <div>
+            <h3>Research Assistant</h3>
+            <div class="org">Fraunhofer Institute for Microstructure of Materials and Systems IMWS</div>
+            <div class="place">Halle, Saxony-Anhalt, Germany</div>
+          </div>
+          <div class="when">Jun 2025 — May 2026</div>
+          <ul>
+            <li>Performed FEA in ANSYS Workbench to evaluate the mechanical behavior of advanced materials.</li>
+            <li>Characterized mechanical properties of pure, recycled and combined material formulations.</li>
+            <li>Built multiscale material models in Digimat incorporating recycled material fractions.</li>
+            <li>Simulated additive manufacturing processes to predict thermal effects, residual stress and distortion.</li>
+          </ul>
+          <div class="tags"><span class="tag">ANSYS Workbench</span><span class="tag">Digimat</span><span class="tag">Thermoplastics</span><span class="tag">Additive Manufacturing</span></div>
+        </div>
+      </div>
+      <div class="panel step">
+        <div class="phead"><span class="n">Step 1</span> · Master Thesis<span class="right"><span class="ok">✓</span> completed</span></div>
+        <div class="pbody job">
+          <div>
+            <h3>Master Thesis Student</h3>
+            <div class="org">Fraunhofer Research Institution for Battery Cell Production FFB</div>
+            <div class="place">Münster, North Rhine-Westphalia, Germany</div>
+          </div>
+          <div class="when">Oct 2023 — Sep 2024</div>
+          <ul>
+            <li>Modeled electrolyte filling in lithium-ion battery manufacturing using ANSYS Fluent.</li>
+            <li>Applied VOF multiphase methods to simulate fluid behavior during the filling process.</li>
+            <li>Developed and validated physics-based numerical models to improve process efficiency.</li>
+            <li>Supported scalable battery production strategy through simulation-driven insights.</li>
+          </ul>
+          <div class="tags"><span class="tag">ANSYS Fluent</span><span class="tag">CFD</span><span class="tag">VOF Multiphase</span><span class="tag">Battery Cells</span></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="skills" class="wrap reveal">
-  <div class="eyebrow">// 03 — toolkit</div>
-  <h2>Skills &amp; tools</h2>
-  <div class="skills">
-    <div class="card">
-      <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span>Simulation</h3>
-      <div class="chips"><span class="chip">ANSYS Workbench</span><span class="chip">ANSYS Fluent</span><span class="chip">Abaqus</span><span class="chip">Digimat</span><span class="chip">FEA</span><span class="chip">CFD</span><span class="chip">VOF Multiphase</span></div>
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="sh"><span class="no">03</span><h2>Toolbox</h2><span class="sub">// skills &amp; software</span></div>
+    <div class="skills">
+      <div class="panel"><div class="phead">▾ Simulation</div><div class="pbody chips" style="--c:#22d3ee">
+        <span class="chip">ANSYS Workbench</span><span class="chip">ANSYS Fluent</span><span class="chip">Abaqus</span><span class="chip">Digimat</span><span class="chip">FEA</span><span class="chip">CFD</span><span class="chip">VOF Multiphase</span>
+      </div></div>
+      <div class="panel"><div class="phead">▾ CAD &amp; Design</div><div class="pbody chips" style="--c:#4ade80">
+        <span class="chip">Siemens NX</span><span class="chip">Fusion 360</span><span class="chip">Autodesk Inventor</span><span class="chip">Product Development</span>
+      </div></div>
+      <div class="panel"><div class="phead">▾ Programming &amp; Materials</div><div class="pbody chips" style="--c:#facc15">
+        <span class="chip">Python</span><span class="chip">MATLAB</span><span class="chip">Thermoplastics</span><span class="chip">Multiscale Modeling</span><span class="chip">Materials Management</span>
+      </div></div>
     </div>
-    <div class="card">
-      <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12 20 7.5M12 12v9M12 12 4 7.5"/></svg></span>CAD &amp; Design</h3>
-      <div class="chips"><span class="chip">Siemens NX</span><span class="chip">Fusion 360</span><span class="chip">Autodesk Inventor</span><span class="chip">Product Development</span></div>
-    </div>
-    <div class="card">
-      <h3><span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg></span>Programming &amp; Materials</h3>
-      <div class="chips"><span class="chip">Python</span><span class="chip">MATLAB</span><span class="chip">Thermoplastics</span><span class="chip">Multiscale Modeling</span><span class="chip">Materials Management</span></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="education" class="wrap reveal">
-  <div class="eyebrow">// 04 — education</div>
-  <h2>Education</h2>
-  <div class="edu">
-    <div class="card">
-      <div class="badge">Master's</div>
-      <h3>Bremerhaven University of Applied Sciences</h3>
-      <div class="deg">Process Engineering and Energy Technology</div>
-      <div class="yr">2019 — May 2026</div>
+  <!-- EDUCATION -->
+  <section id="education" class="reveal">
+    <div class="sh"><span class="no">04</span><h2>Education</h2><span class="sub">// geometry imported</span></div>
+    <div class="edu">
+      <div class="panel"><div class="phead">Master's</div><div class="pbody">
+        <h3>Bremerhaven University of Applied Sciences</h3>
+        <div class="deg">Process Engineering and Energy Technology</div>
+        <div class="yr">2019 — May 2026</div></div></div>
+      <div class="panel"><div class="phead">Erasmus+ exchange</div><div class="pbody">
+        <h3>AGH University of Krakow</h3>
+        <div class="deg">Management and Fuel Cells</div>
+        <div class="yr">Mar 2021 — Jul 2021</div></div></div>
+      <div class="panel"><div class="phead">Bachelor's</div><div class="pbody">
+        <h3>Vel Tech Technical University</h3>
+        <div class="deg">B.Tech, Mechanical Engineering</div>
+        <div class="yr">2014 — 2018</div></div></div>
+      <div class="panel"><div class="phead">Higher secondary</div><div class="pbody">
+        <h3>Sri Chaitanya Junior College</h3>
+        <div class="deg">Science</div>
+        <div class="yr">2012 — 2014</div></div></div>
     </div>
-    <div class="card">
-      <div class="badge">Erasmus+</div>
-      <h3>AGH University of Krakow</h3>
-      <div class="deg">Management and Fuel Cells</div>
-      <div class="yr">Mar 2021 — Jul 2021</div>
-    </div>
-    <div class="card">
-      <div class="badge">Bachelor's</div>
-      <h3>Vel Tech Technical University</h3>
-      <div class="deg">B.Tech, Mechanical Engineering</div>
-      <div class="yr">2014 — 2018</div>
-    </div>
-    <div class="card">
-      <div class="badge">Higher Secondary</div>
-      <h3>Sri Chaitanya Junior College</h3>
-      <div class="deg">Science</div>
-      <div class="yr">2012 — 2014</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact" class="wrap reveal">
-  <div class="card contact">
-    <div class="eyebrow">// 05 — contact</div>
-    <h2>Let's build something that works the first time</h2>
-    <p>Looking for full-time roles in mechanical, R&amp;D or simulation engineering across Germany and Europe.</p>
-    <div class="cta">
-      <a class="btn primary" href="mailto:viswanathkomeneni@gmail.com">viswanathkomeneni@gmail.com</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/sai-viswanathkommineni-3b1a25156" target="_blank" rel="noopener">Connect on LinkedIn</a>
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="panel contact">
+      <div class="phead"><span class="lights"><i></i><i></i><i></i></span>Boundary conditions — get in touch<span class="right"><span class="ok">●</span> ready</span></div>
+      <div class="pbody">
+        <div>
+          <div class="sh" style="margin-bottom:6px"><span class="no">05</span></div>
+          <h2>Let's get it right the first time</h2>
+          <p>Looking for full-time roles in mechanical, R&amp;D or simulation engineering across Germany and Europe.</p>
+        </div>
+        <div class="lines">
+          <a class="line" href="mailto:komminenisaiviswanath@gmail.com">
+            <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span><div class="k">email</div><div class="v">komminenisaiviswanath@gmail.com</div></span>
+            <button class="copy" data-copy="komminenisaiviswanath@gmail.com">copy</button>
+          </a>
+          <a class="line" href="tel:+4915141636930">
+            <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2z"/></svg></span>
+            <span><div class="k">mobile</div><div class="v">+49 151 41636930</div></span>
+            <button class="copy" data-copy="+4915141636930">copy</button>
+          </a>
+          <a class="line" href="https://www.linkedin.com/in/sai-viswanath-kommineni-3b1a25156" target="_blank" rel="noopener">
+            <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.2 21 14.5V21h-4v-5.8c0-1.4-.03-3.2-1.95-3.2-1.95 0-2.25 1.5-2.25 3.1V21H9z"/></svg></span>
+            <span><div class="k">linkedin</div><div class="v">in/sai-viswanath-kommineni-3b1a25156</div></span>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </main>
 
-<footer class="wrap">© 2026 Sai Viswanath Kommineni · Bremen, Germany</footer>
+<footer class="status">
+  <div class="wrap">
+    <span><span class="ok">●</span> <b>Ready</b></span>
+    <span>Solver: <b>converged</b></span>
+    <span>Location: <b>Bremen, DE</b></span>
+    <span>© 2026 <b>Sai Viswanath Kommineni</b></span>
+  </div>
+</footer>
 
 <script>
-// theme toggle
 (function(){
-  const root=document.documentElement, btn=document.getElementById('themeBtn');
-  let saved=null; try{saved=localStorage.getItem('theme')}catch(e){}
-  if(saved) root.setAttribute('data-theme',saved);
-  btn.addEventListener('click',()=>{
-    const cur=root.getAttribute('data-theme') ||
-      (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-    const next=cur==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    try{localStorage.setItem('theme',next)}catch(e){}
-  });
-})();
+  /* ---------- band colors (classic CAE legend, blue → red) ---------- */
+  const BANDS=['#0000ff','#0050ff','#00a0ff','#00e5ff','#00ff9c','#4cff00','#c8ff00','#ffea00','#ffa000','#ff4a00','#ff0000'];
+  const NB=BANDS.length;
 
-// reveal on scroll
-(function(){
-  const els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-  els.forEach(e=>io.observe(e));
-})();
-
-// animated FE-style mesh in hero
-(function(){
-  const g=document.getElementById('mesh'); if(!g) return;
-  const N=9, S=300/(N-1), pts=[];
-  for(let i=0;i<N;i++)for(let j=0;j<N;j++)pts.push({x:j*S,y:i*S,i,j});
-  const lines=[];
-  const ns='http://www.w3.org/2000/svg';
-  function idx(i,j){return i*N+j}
-  for(let i=0;i<N;i++)for(let j=0;j<N;j++){
-    if(j<N-1)lines.push([idx(i,j),idx(i,j+1)]);
-    if(i<N-1)lines.push([idx(i,j),idx(i+1,j)]);
-    if(i<N-1&&j<N-1&&(i+j)%2===0)lines.push([idx(i,j),idx(i+1,j+1)]);
+  /* ---------- Kirsch solution: infinite plate with a hole, uniaxial tension in x ---------- */
+  function vm(x,y,a,s){
+    const r2=x*x+y*y, r=Math.sqrt(r2);
+    if(r<a) return 0;
+    const th=Math.atan2(y,x), c2=Math.cos(2*th), s2=Math.sin(2*th);
+    const a2=a*a/r2, a4=a2*a2;
+    const srr=s/2*(1-a2)+s/2*(1-4*a2+3*a4)*c2;
+    const stt=s/2*(1+a2)-s/2*(1+3*a4)*c2;
+    const trt=-s/2*(1+2*a2-3*a4)*s2;
+    return Math.sqrt(srr*srr-srr*stt+stt*stt+3*trt*trt);
   }
-  const els=lines.map(()=>{const l=document.createElementNS(ns,'line');g.appendChild(l);return l});
+
+  /* ---------- O-grid mesh around the hole ---------- */
+  const NT=64, NR=16, A=0.2;            // angles, rings, hole radius (plate half-size = 1)
+  const nodes=[];
+  for(let k=0;k<NT;k++){
+    const th=k/NT*Math.PI*2, c=Math.cos(th), s=Math.sin(th);
+    const m=Math.max(Math.abs(c),Math.abs(s));
+    const bx=c/m, by=s/m, hx=c*A, hy=s*A;
+    const ring=[];
+    for(let j=0;j<=NR;j++){
+      const t=Math.pow(j/NR,1.55);
+      ring.push([hx+(bx-hx)*t, hy+(by-hy)*t]);
+    }
+    nodes.push(ring);
+  }
+  document.getElementById('nodes').textContent=(NT*(NR+1)).toLocaleString('en');
+  document.getElementById('elems').textContent=(NT*NR).toLocaleString('en');
+
+  const cvs=document.getElementById('fea'), ctx=cvs.getContext('2d');
+  const stage=document.getElementById('stage');
+  const legend=document.getElementById('legend'), loadEl=document.getElementById('load'), timeEl=document.getElementById('time');
+  const probe=document.getElementById('probe');
+  let W=0,H=0,dpr=1,scale=1,cx=0,cy=0;
+
+  function resize(){
+    const r=stage.getBoundingClientRect();
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=r.width; H=r.height;
+    cvs.width=W*dpr; cvs.height=H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    scale=Math.min(W*0.36,H*0.40); cx=W*0.58; cy=H*0.52;
+  }
+  window.addEventListener('resize',resize); resize();
+
+  // legend rows
+  const rows=[];
+  for(let i=NB;i>=0;i--){
+    const sw=document.createElement('i'); sw.style.background=i===NB?'transparent':BANDS[i];
+    if(i===NB){sw.style.border='0';sw.style.height='0'}
+    const lb=document.createElement('span'); lb.textContent='';
+    legend.appendChild(sw); legend.appendChild(lb); rows.push({lb,i});
+  }
+
+  let curS=100, curMax=300, mouse=null;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function draw(t){
-    const p=pts.map(q=>{
-      const dx=q.x-150, dy=q.y-150, r=Math.sqrt(dx*dx+dy*dy);
-      const w=Math.sin(r/28 - t/700)*6*(1-r/220);
-      return {x:q.x+dx/(r||1)*w, y:q.y+dy/(r||1)*w, a:Math.max(0,1-r/215)};
+    const sec=t/1000;
+    const S=100+40*Math.sin(sec*1.1);              // applied far-field stress, MPa
+    const disp=0.045*(S/140);                       // exaggerated deformation scale
+    curS=S; curMax=3*S;
+    const vmin=0, vmax=curMax;
+
+    ctx.clearRect(0,0,W,H);
+
+    // load arrows
+    ctx.strokeStyle='rgba(250,204,21,.85)'; ctx.fillStyle='rgba(250,204,21,.85)'; ctx.lineWidth=1.4;
+    for(let side of [-1,1]){
+      const xEdge=cx+side*(1+disp)*scale;
+      for(let k=-4;k<=4;k++){
+        const y=cy+k*scale/4.6, len=10+12*(S/140);
+        const x0=xEdge+side*4, x1=x0+side*len;
+        ctx.beginPath();ctx.moveTo(x0,y);ctx.lineTo(x1,y);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(x1+side*5,y);ctx.lineTo(x1,y-3.5);ctx.lineTo(x1,y+3.5);ctx.closePath();ctx.fill();
+      }
+    }
+
+    // elements
+    const P=(p)=>[cx+(p[0]*(1+disp))*scale, cy-(p[1]*(1-0.3*disp))*scale];
+    for(let k=0;k<NT;k++){
+      const a=nodes[k], b=nodes[(k+1)%NT];
+      for(let j=0;j<NR;j++){
+        const q=[a[j],b[j],b[j+1],a[j+1]];
+        const mx=(q[0][0]+q[1][0]+q[2][0]+q[3][0])/4, my=(q[0][1]+q[1][1]+q[2][1]+q[3][1])/4;
+        const v=vm(mx,my,A,S);
+        let bi=Math.floor((v-vmin)/(vmax-vmin)*NB); bi=Math.max(0,Math.min(NB-1,bi));
+        ctx.fillStyle=BANDS[bi];
+        ctx.beginPath();
+        const p0=P(q[0]);ctx.moveTo(p0[0],p0[1]);
+        for(let m=1;m<4;m++){const pm=P(q[m]);ctx.lineTo(pm[0],pm[1])}
+        ctx.closePath();ctx.fill();
+        ctx.strokeStyle='rgba(0,0,0,.28)';ctx.lineWidth=.6;ctx.stroke();
+      }
+    }
+
+    // undeformed outline
+    ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=1;
+    ctx.strokeRect(cx-scale,cy-scale,2*scale,2*scale);
+    ctx.beginPath();ctx.arc(cx,cy,A*scale,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
+
+    // max marker at top of hole
+    const mp=P([0,A]);
+    ctx.fillStyle='#fff';ctx.font='600 10px JetBrains Mono, monospace';
+    ctx.beginPath();ctx.arc(mp[0],mp[1]-1,3,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(9,15,25,.9)';ctx.fillRect(mp[0]+6,mp[1]-26,44,15);
+    ctx.fillStyle='#ff6a5c';ctx.fillText('Max',mp[0]+11,mp[1]-15);
+
+    // legend values
+    rows.forEach(r=>{
+      const val=vmin+(vmax-vmin)*r.i/NB;
+      r.lb.textContent=val.toFixed(1)+(r.i===NB?' Max':r.i===0?' Min':'');
+      r.lb.className=r.i===NB?'mx':r.i===0?'mn':'';
     });
-    lines.forEach((ln,k)=>{
-      const a=p[ln[0]], b=p[ln[1]];
-      const e=els[k];
-      e.setAttribute('x1',a.x);e.setAttribute('y1',a.y);e.setAttribute('x2',b.x);e.setAttribute('y2',b.y);
-      e.setAttribute('stroke-opacity',(Math.min(a.a,b.a)*.7).toFixed(3));
-    });
+    loadEl.textContent=S.toFixed(1);
+    timeEl.textContent=(sec%10).toFixed(3);
+
+    // probe
+    if(mouse){
+      const x=(mouse.x-cx)/scale/(1+disp), y=-(mouse.y-cy)/scale/(1-0.3*disp);
+      if(Math.abs(x)<=1&&Math.abs(y)<=1&&x*x+y*y>=A*A){
+        probe.style.display='block';probe.style.left=mouse.x+'px';probe.style.top=mouse.y+'px';
+        probe.textContent='σ_vM = '+vm(x,y,A,S).toFixed(1)+' MPa';
+        ctx.strokeStyle='#fff';ctx.lineWidth=1;ctx.beginPath();ctx.arc(mouse.x,mouse.y,4,0,Math.PI*2);ctx.stroke();
+      } else probe.style.display='none';
+    }
+
     if(!reduce) requestAnimationFrame(draw);
   }
-  draw(0);
+  stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();mouse={x:e.clientX-r.left,y:e.clientY-r.top};if(reduce)draw(800)});
+  stage.addEventListener('pointerleave',()=>{mouse=null;probe.style.display='none';if(reduce)draw(800)});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(resize);
+  reduce?draw(800):requestAnimationFrame(draw);
+
+  /* ---------- residual plot ---------- */
+  const svg=document.getElementById('resid'), ns='http://www.w3.org/2000/svg';
+  for(let y=0;y<=4;y++){const l=document.createElementNS(ns,'line');l.setAttribute('x1',0);l.setAttribute('x2',300);l.setAttribute('y1',5+y*25);l.setAttribute('y2',5+y*25);l.setAttribute('stroke','#223042');l.setAttribute('stroke-width','.6');svg.appendChild(l)}
+  const series=[['#f43f5e',14,0],['#4ade80',11,1.3],['#3b82f6',12,2.1],['#facc15',9,3.3]];
+  series.forEach(([c,tau,ph])=>{
+    let d='';
+    for(let k=0;k<=150;k++){
+      const lg=-k/tau*0.42+0.25*Math.sin(k*0.55+ph)*Math.exp(-k/70)+0.06*Math.sin(k*1.7+ph);
+      const yv=Math.max(-4,Math.min(0,lg));
+      d+=(k?'L':'M')+(k*2).toFixed(1)+','+(5-yv*25).toFixed(1);
+    }
+    const p=document.createElementNS(ns,'path');p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',c);p.setAttribute('stroke-width','1.3');
+    p.setAttribute('vector-effect','non-scaling-stroke');svg.appendChild(p);
+  });
+
+  /* ---------- copy buttons ---------- */
+  document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async e=>{
+    e.preventDefault();e.stopPropagation();
+    try{await navigator.clipboard.writeText(b.dataset.copy);b.textContent='copied';}catch(_){b.textContent='select';}
+    setTimeout(()=>b.textContent='copy',1500);
+  }));
+
+  /* ---------- active tab + reveal ---------- */
+  const tabs=[...document.querySelectorAll('.tabs a')];
+  const els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in')}}),{threshold:.1});
+    els.forEach(e=>io.observe(e));
+    const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){tabs.forEach(t=>t.classList.toggle('on',t.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('section[id]').forEach(s=>io2.observe(s));
+  } else els.forEach(e=>e.classList.add('in'));
 })();
 </script>
 </body>
